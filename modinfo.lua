@@ -1,8 +1,8 @@
 
-name = "人物模板"  ---mod名字
-description = ""  --mod描述
-author = "Dragon Wolf Leo" --作者
-version = "1.2.3" -- mod版本 上传mod需要两次的版本不一样
+name = "我的大师兄"  ---mod名字
+description = "脑子有坑"  --mod描述
+author = "Dolphin9" --作者
+version = "0" -- mod版本 上传mod需要两次的版本不一样
 
 forumthread = ""
 
