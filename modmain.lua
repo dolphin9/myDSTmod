@@ -59,22 +59,22 @@ GLOBAL.PREFAB_SKINS["qianyun"] = {   --修复人物大图显示
 }
 
 -- The character select screen lines  --人物选人界面的描述
-STRINGS.CHARACTER_TITLES.qianyun = "The Sample Character"
-STRINGS.CHARACTER_NAMES.qianyun = "Esc"
-STRINGS.CHARACTER_DESCRIPTIONS.qianyun = "*Perk 1\n*Perk 2\n*Perk 3"
-STRINGS.CHARACTER_QUOTES.qianyun = "\"Quote\""
+STRINGS.CHARACTER_TITLES.qianyun = "东方纤云"
+STRINGS.CHARACTER_NAMES.qianyun = "东方纤云"
+STRINGS.CHARACTER_DESCRIPTIONS.qianyun = "*逍遥门大师兄\n*是个符修\n*是个熟练掌握flag使用方法的穿越者"
+STRINGS.CHARACTER_QUOTES.qianyun = "\"活着，才是硬道理！\""
 
 -- Custom speech strings  ----人物语言文件  可以进去自定义
 STRINGS.CHARACTERS.QIANYUN = require "speech_qianyun"
 
 -- The character's name as appears in-game  --人物在游戏里面的名字
-STRINGS.NAMES.QIANYUN = "Esc"
-STRINGS.SKIN_NAMES.qianyun_none = "Esc"  --检查界面显示的名字
+STRINGS.NAMES.QIANYUN = "东方纤云"
+STRINGS.SKIN_NAMES.qianyun_none = "东方纤云"  --检查界面显示的名字
 
 AddMinimapAtlas("images/map_icons/qianyun.xml")  --增加小地图图标
 
 --增加人物到mod人物列表的里面 性别为女性（MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL）
-AddModCharacter("qianyun", "FEMALE") 
+AddModCharacter("qianyun", "MALE") 
 
 
 
@@ -84,7 +84,7 @@ TUNING.QIANYUN_HUNGER = 150
 TUNING.QIANYUN_SANITY = 150
 
 --生存几率
-STRINGS.CHARACTER_SURVIVABILITY.qianyun = "生存？爷是来斩妖除魔的！"
+STRINGS.CHARACTER_SURVIVABILITY.qianyun = "死不了?\n\"快划掉，这是flag！\""
 
 --选人界面初始物品显示
 TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.QIANYUN = {"spear"}
