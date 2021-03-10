@@ -42,6 +42,35 @@ local common_postinit = function(inst)
 	inst.MiniMapEntity:SetIcon( "qianyun.tex" )
 end
 
+local function HealingTick(inst)
+
+	local hunger_bonus_mult = 1
+    local health_bonus_mult = 1
+    local sanity_bonus_mult = 1
+
+	local bonus_hunger_per_tick = 0
+	local bonus_health_per_tick = 1
+	local bonus_sanity_per_tick = -1
+
+	local hunger_tick = bonus_hunger_per_tick * hunger_bonus_mult
+    local health_tick = bonus_health_per_tick * health_bonus_mult
+    local sanity_tick = bonus_sanity_per_tick * sanity_bonus_mult
+
+	if inst.components.sanity ~= nil and inst.components.sanity:GetPercentWithPenalty() > .8 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
+        inst.components.sanity:DoDelta(sanity_tick, true)
+		inst.components.health:DoDelta(health_tick, true, nil, true)
+    end
+
+end
+
+
+local function DoSelfhealing(inst)
+
+	inst:DoPeriodicTask(1, function() HealingTick(inst) end)
+
+end
+
+
 -- 这里的的函数只在主机执行  一般组件之类的都写在这里
 local master_postinit = function(inst)
 	-- 人物音效
@@ -59,6 +88,8 @@ local master_postinit = function(inst)
 	
 	-- 饥饿速度
 	inst.components.hunger.hungerrate = 1 * TUNING.WILSON_HUNGER_RATE
+
+	DoSelfhealing(inst)
 	
 	inst.OnLoad = onload
     inst.OnNewSpawn = onload
