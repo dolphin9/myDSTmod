@@ -44,21 +44,20 @@ end
 
 local function HealingTick(inst)
 
-	local hunger_bonus_mult = 1
-    local health_bonus_mult = 1
-    local sanity_bonus_mult = 1
+	local bonus_mult = 1
 
-	local bonus_hunger_per_tick = 0
-	local bonus_health_per_tick = 1
-	local bonus_sanity_per_tick = -1
+	local bonus_per_tick = 1
 
-	local hunger_tick = bonus_hunger_per_tick * hunger_bonus_mult
-    local health_tick = bonus_health_per_tick * health_bonus_mult
-    local sanity_tick = bonus_sanity_per_tick * sanity_bonus_mult
+	if inst.components.sanity ~= nil and inst.components.sanity:GetPercentWithPenalty() > .2 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
 
-	if inst.components.sanity ~= nil and inst.components.sanity:GetPercentWithPenalty() > .8 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
-        inst.components.sanity:DoDelta(sanity_tick, true)
-		inst.components.health:DoDelta(health_tick, true, nil, true)
+		local currentSanity = inst.components.sanity:GetPercentWithPenalty()
+		local currentHealth = inst.components.health:GetPercent()
+		
+		bonus_per_tick = math.ceil( (1-currentHealth)/0.2 )
+		bonus_mult = 0.5 * (math.ceil( currentSanity/0.2 )-1)
+
+        inst.components.sanity:DoDelta(bonus_per_tick * -1 , true)
+		inst.components.health:DoDelta(bonus_per_tick * bonus_mult, true, nil, true)
     end
 
 end

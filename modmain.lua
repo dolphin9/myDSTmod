@@ -61,7 +61,7 @@ GLOBAL.PREFAB_SKINS["qianyun"] = {   --修复人物大图显示
 -- The character select screen lines  --人物选人界面的描述
 STRINGS.CHARACTER_TITLES.qianyun = "东方纤云"
 STRINGS.CHARACTER_NAMES.qianyun = "东方纤云"
-STRINGS.CHARACTER_DESCRIPTIONS.qianyun = "*逍遥门大师兄\n*是个符修\n*是个熟练掌握flag使用方法的穿越者"
+STRINGS.CHARACTER_DESCRIPTIONS.qianyun = "*逍遥门大师兄\n*是个符修\n*是个熟练掌握flag使用方法的穿越者\n*脑子有坑"
 STRINGS.CHARACTER_QUOTES.qianyun = "\"活着，才是硬道理！\""
 
 -- Custom speech strings  ----人物语言文件  可以进去自定义
@@ -79,9 +79,9 @@ AddModCharacter("qianyun", "MALE")
 
 
 --选人界面人物三维显示
-TUNING.QIANYUN_HEALTH = 150
-TUNING.QIANYUN_HUNGER = 150
-TUNING.QIANYUN_SANITY = 150
+TUNING.QIANYUN_HEALTH = 180
+TUNING.QIANYUN_HUNGER = 180
+TUNING.QIANYUN_SANITY = 160
 
 --生存几率
 STRINGS.CHARACTER_SURVIVABILITY.qianyun = "死不了?\n\"快划掉，这是flag！\""
