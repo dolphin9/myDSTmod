@@ -44,20 +44,29 @@ end
 
 local function HealingTick(inst)
 
-	local bonus_mult = 1
+	if inst.components.sanity ~= nil and inst.components.sanity:GetPercent() > .05 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
 
-	local bonus_per_tick = 1
-
-	if inst.components.sanity ~= nil and inst.components.sanity:GetPercentWithPenalty() > .2 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
-
-		local currentSanity = inst.components.sanity:GetPercentWithPenalty()
+		local currentSanity = inst.components.sanity:GetPercent()
 		local currentHealth = inst.components.health:GetPercent()
-		
-		bonus_per_tick = math.ceil( (1-currentHealth)/0.2 )
-		bonus_mult = 0.5 * (math.ceil( currentSanity/0.2 )-1)
 
-        inst.components.sanity:DoDelta(bonus_per_tick * -1 , true)
-		inst.components.health:DoDelta(bonus_per_tick * bonus_mult, true, nil, true)
+		local sanity_penalty = math.ceil((1 - currentHealth)/0.2)
+		local health_bonus = 1  --level up
+
+		if currentSanity < .5 then
+			health_bonus = health_bonus * 2
+		end
+		
+		if currentSanity * TUNING.QIANYUN_SANITY >= sanity_penalty then
+			--inst.components.sanity:SetPercent(currentSanity - sanity_penalty, true)
+			--inst.components.health:SetPercent(currentHealth + sanity_penalty * health_bonus, true, nil)
+		
+		
+			--penalty_per_tick = math.min(math.ceil( (1-currentHealth)/0.2 ),(currentSanity-0.2)*TUNING.QIANYUN_SANITY)
+			--penalty_mult = math.max(0.5 * (math.ceil( currentSanity/0.2 )-1),0.5)
+
+        	inst.components.sanity:DoDelta(sanity_penalty * -1 , true)
+			inst.components.health:DoDelta(sanity_penalty * health_bonus, true, nil, true)
+		end
     end
 
 end
@@ -65,7 +74,7 @@ end
 
 local function DoSelfhealing(inst)
 
-	inst:DoPeriodicTask(1, function() HealingTick(inst) end)
+	inst:DoPeriodicTask(3, function() HealingTick(inst) end)
 
 end
 
