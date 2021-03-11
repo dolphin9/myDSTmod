@@ -14,12 +14,12 @@ local start_inv = {
 -- 当人物复活的时候
 local function onbecamehuman(inst)
 	-- 设置人物的移速（1表示1倍于wilson）
-	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "qianyun_speed_mod", 1)
+	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "xianyun_speed_mod", 1)
 end
 --当人物死亡的时候
 local function onbecameghost(inst)
 	-- 变成鬼魂的时候移除速度修正
-   inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "qianyun_speed_mod")
+   inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "xianyun_speed_mod")
 end
 
 -- 重载游戏或者生成一个玩家的时候
@@ -39,12 +39,12 @@ end
 --一般用于添加小地图标签等动画文件或者需要主客机都执行的组件（少数）
 local common_postinit = function(inst) 
 	-- Minimap icon
-	inst.MiniMapEntity:SetIcon( "qianyun.tex" )
+	inst.MiniMapEntity:SetIcon( "xianyun.tex" )
 end
 
 local function HealingTick(inst)
 
-	if inst.components.sanity ~= nil and inst.components.sanity:GetPercent() > .05 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
+	if inst.components.sanity ~= nil and inst.replica.sanity:GetCurrent() > 5 and inst.components.health ~= nil and inst.components.health:GetPercent() <1 then
 
 		local currentSanity = inst.components.sanity:GetPercent()
 		local currentHealth = inst.components.health:GetPercent()
@@ -56,15 +56,8 @@ local function HealingTick(inst)
 			health_bonus = health_bonus * 2
 		end
 		
-		if currentSanity * TUNING.QIANYUN_SANITY >= sanity_penalty then
-			--inst.components.sanity:SetPercent(currentSanity - sanity_penalty, true)
-			--inst.components.health:SetPercent(currentHealth + sanity_penalty * health_bonus, true, nil)
-		
-		
-			--penalty_per_tick = math.min(math.ceil( (1-currentHealth)/0.2 ),(currentSanity-0.2)*TUNING.QIANYUN_SANITY)
-			--penalty_mult = math.max(0.5 * (math.ceil( currentSanity/0.2 )-1),0.5)
-
-        	inst.components.sanity:DoDelta(sanity_penalty * -1 , true)
+		if inst.replica.sanity:GetCurrent() >= sanity_penalty then
+			inst.components.sanity:DoDelta(sanity_penalty * -1 , true)
 			inst.components.health:DoDelta(sanity_penalty * health_bonus, true, nil, true)
 		end
     end
@@ -87,9 +80,9 @@ local master_postinit = function(inst)
 	--最喜欢的食物  名字 倍率（1.2）
 	inst.components.foodaffinity:AddPrefabAffinity("baconeggs", TUNING.AFFINITY_15_CALORIES_HUGE)
 	-- 三维	
-	inst.components.health:SetMaxHealth(TUNING.QIANYUN_HEALTH)
-	inst.components.hunger:SetMax(TUNING.QIANYUN_HUNGER)
-	inst.components.sanity:SetMax(TUNING.QIANYUN_SANITY)
+	inst.components.health:SetMaxHealth(TUNING.XIANYUN_HEALTH)
+	inst.components.hunger:SetMax(TUNING.XIANYUN_HUNGER)
+	inst.components.sanity:SetMax(TUNING.XIANYUN_SANITY)
 	
 	-- 伤害系数
     inst.components.combat.damagemultiplier = 1
@@ -104,4 +97,4 @@ local master_postinit = function(inst)
 	
 end
 
-return MakePlayerCharacter("qianyun", prefabs, assets, common_postinit, master_postinit, start_inv)
+return MakePlayerCharacter("xianyun", prefabs, assets, common_postinit, master_postinit, start_inv)
