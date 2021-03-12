@@ -1,6 +1,9 @@
+GLOBAL.setmetatable(env,{__index=function(t,k) return GLOBAL.rawget(GLOBAL,k) end})  --GLOBAL相关照抄
+
 PrefabFiles = {
 	"xianyun",  --人物代码文件
 	"xianyun_none",  --人物皮肤
+    "wuqi", --武器
 }
 ---对比老版本 主要是增加了names图片 人物检查图标 还有人物的手臂修复（增加了上臂）
 --人物动画里面有个SWAP_ICON 里面的图片是在检查时候人物头像那里显示用的
@@ -71,12 +74,23 @@ STRINGS.CHARACTERS.XIANYUN = require "speech_xianyun"
 STRINGS.NAMES.XIANYUN = "东方纤云"
 STRINGS.SKIN_NAMES.xianyun_none = "东方纤云"  --检查界面显示的名字
 
+--武器
+STRINGS.NAMES.WUQI= "武器"    --名字
+STRINGS.RECIPE_DESC.WUQI = "大佬来做把武器吧"  --配方上面的描述
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.WUQI = "打人老疼了"  --人物检查的描述
+
 AddMinimapAtlas("images/map_icons/xianyun.xml")  --增加小地图图标
 
---增加人物到mod人物列表的里面 性别为女性（MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL）
+--增加人物到mod人物列表的里面 性别为（MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL）
 AddModCharacter("xianyun", "MALE") 
 
-
+--武器（配方相关）
+AddRecipe("wuqi",  --添加物品的配方
+{Ingredient("fish", 2),Ingredient("berries", 3)},  --材料
+RECIPETABS.WAR,  TECH.SCIENCE_TWO,  --制作栏和解锁的科技（这里是战斗，需要科学二本）
+nil, nil, nil, nil, nil,  --是否有placer  是否有放置的间隔  科技锁  制作的数量（改成2就可以一次做两个） 需要的标签（比如女武神的配方需要女武神的自有标签才可以看得到）
+"images/inventoryimages/wuqi.xml",  --配方的贴图（跟物品栏使用同一个贴图）
+"wuqi.tex")
 
 --选人界面人物三维显示
 TUNING.XIANYUN_HEALTH = 150
@@ -87,14 +101,13 @@ TUNING.XIANYUN_SANITY = 150
 STRINGS.CHARACTER_SURVIVABILITY.xianyun = "死不了?\n\"快划掉，这是flag！\""
 
 --选人界面初始物品显示
-TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.XIANYUN = {"spear"}
+TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.XIANYUN = {"wuqi"}
 
---[[如果你的初始物品是mod物品需要定义mod物品的图片路径 比如物品是 abc
+--如果你的初始物品是mod物品需要定义mod物品的图片路径 比如物品是 abc
 
-TUNING.STARTING_ITEM_IMAGE_OVERRIDE["abc"] = {
-	atlas = "images/inventoryimages/abc.xml",
-	image = "abc.tex",
+TUNING.STARTING_ITEM_IMAGE_OVERRIDE["wuqi"] = {
+	atlas = "images/inventoryimages/wuqi.xml",
+	image = "wuqi.tex",
 }
 
-]]
 

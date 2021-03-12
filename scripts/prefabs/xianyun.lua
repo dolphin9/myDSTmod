@@ -9,7 +9,7 @@ local prefabs = {}
 
 -- 初始物品
 local start_inv = {
-	"spear", --自带一个长矛
+	"wuqi", --自带wuqi
 }
 -- 当人物复活的时候
 local function onbecamehuman(inst)
