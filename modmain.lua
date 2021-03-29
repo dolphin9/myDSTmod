@@ -4,6 +4,7 @@ PrefabFiles = {
 	"xianyun",  --人物代码文件
 	"xianyun_none",  --人物皮肤
     "wuqi", --武器
+    "xianguo",--仙果
 }
 ---对比老版本 主要是增加了names图片 人物检查图标 还有人物的手臂修复（增加了上臂）
 --人物动画里面有个SWAP_ICON 里面的图片是在检查时候人物头像那里显示用的
@@ -101,13 +102,17 @@ TUNING.XIANYUN_SANITY = 150
 STRINGS.CHARACTER_SURVIVABILITY.xianyun = "死不了?\n\"快划掉，这是flag！\""
 
 --选人界面初始物品显示
-TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.XIANYUN = {"wuqi"}
+TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.XIANYUN = {"wuqi","xianguo"}
 
 --如果你的初始物品是mod物品需要定义mod物品的图片路径 比如物品是 abc
 
 TUNING.STARTING_ITEM_IMAGE_OVERRIDE["wuqi"] = {
 	atlas = "images/inventoryimages/wuqi.xml",
 	image = "wuqi.tex",
+}
+TUNING.STARTING_ITEM_IMAGE_OVERRIDE["xianguo"] = {
+	atlas = "images/foods/xianguo.xml",
+	image = "xianguo.tex",
 }
 
 
