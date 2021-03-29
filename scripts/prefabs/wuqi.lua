@@ -45,11 +45,11 @@ local function fn()
 
     -------
 
-    inst:AddComponent("finiteuses") --使用次数（叫耐久也可以）
-    inst.components.finiteuses:SetMaxUses(200)
-    inst.components.finiteuses:SetUses(200)
+    --inst:AddComponent("finiteuses") --使用次数（叫耐久也可以）
+    --inst.components.finiteuses:SetMaxUses(200)
+    --inst.components.finiteuses:SetUses(200)
 
-    inst.components.finiteuses:SetOnFinished(inst.Remove) --没有耐久了移除武器
+    --.components.finiteuses:SetOnFinished(inst.Remove) --没有耐久了移除武器
 
     inst:AddComponent("inspectable") --可检查组件
 

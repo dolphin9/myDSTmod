@@ -1,5 +1,3 @@
-
-
 local foods = {
     xianguo= {
         health = 10,
@@ -17,7 +15,7 @@ local foods = {
         --halloweenmoonmutable_settings = halloweenmoonmutable_settings,
         secondary_foodtype = FOODTYPE.BERRY,    -- 后期可以改成种子
         --lure_data = lure_data,
-    }
+    },
 }
 -----------------------
 
@@ -119,6 +117,7 @@ local function MakeVeggie(name)
         inst:AddComponent("inspectable")
         --- 可储存
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem.atlasname = "images/foods/"..name..".xml" --物品贴图
 
         MakeSmallBurnable(inst)     --可燃
         MakeSmallPropagator(inst)   --???
@@ -179,6 +178,7 @@ local function MakeVeggie(name)
 
         inst:AddComponent("inspectable")
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem.atlasname = "images/foods/"..name.."_cooked.xml" --物品贴图
 
         MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)

@@ -10,6 +10,11 @@ local prefabs = {}
 -- 初始物品
 local start_inv = {
 	"wuqi", --自带wuqi
+	"xianguo",
+	"xianguo",
+	"xianguo",
+	"xianguo",
+	"xianguo",
 }
 -- 当人物复活的时候
 local function onbecamehuman(inst)
@@ -78,7 +83,7 @@ local master_postinit = function(inst)
 	inst.soundsname = "willow"
 
 	--最喜欢的食物  名字 倍率（1.2）
-	inst.components.foodaffinity:AddPrefabAffinity("baconeggs", TUNING.AFFINITY_15_CALORIES_HUGE)
+	inst.components.foodaffinity:AddPrefabAffinity("xianguo", TUNING.AFFINITY_15_CALORIES_HUGE)
 	-- 三维	
 	inst.components.health:SetMaxHealth(TUNING.XIANYUN_HEALTH)
 	inst.components.hunger:SetMax(TUNING.XIANYUN_HUNGER)

@@ -80,6 +80,12 @@ STRINGS.NAMES.WUQI= "武器"    --名字
 STRINGS.RECIPE_DESC.WUQI = "大佬来做把武器吧"  --配方上面的描述
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.WUQI = "打人老疼了"  --人物检查的描述
 
+--仙果
+STRINGS.NAMES.XIANGUO= "仙果"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.XIANGUO = "很好吃"
+STRINGS.NAMES.XIANGUO_COOKED= "烤熟的仙果"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.XIANGUO_COOKED = "味道不错"
+
 AddMinimapAtlas("images/map_icons/xianyun.xml")  --增加小地图图标
 
 --增加人物到mod人物列表的里面 性别为（MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL）
